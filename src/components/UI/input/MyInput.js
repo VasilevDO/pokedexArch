@@ -1,21 +1,27 @@
-import React,{useRef} from "react";
-import MyButton from "../button/MyButton";
-import './MyInput.css'
+import React, {useRef} from 'react';
+import PropTypes from 'prop-types';
 
-const MyInput=(props)=>{
-    const ref=useRef()
-    const handleButtonClick=()=>{
-        const query=ref.current.value
-        props.action(query)
-    }
-    return (
-        <div>
-            <input className="MyInput" ref={ref} />
-            <MyButton onClick={handleButtonClick}>Найти</MyButton>
-        </div>
-        
-        
-    )
-}
+import MyButton from '../button/MyButton';
+import './MyInput.css';
 
-export default MyInput
+const MyInput = props => {
+	const ref = useRef();
+	const handleButtonClick = () => {
+		const query = ref.current.value;
+		props.action(query);
+	};
+
+	return (
+		<div>
+			<input className="MyInput" ref={ref} />
+			<MyButton onClick={handleButtonClick}>Найти</MyButton>
+		</div>
+
+	);
+};
+
+MyInput.propTypes = {
+	action: PropTypes.func,
+};
+
+export default MyInput;

@@ -1,43 +1,45 @@
-import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux"
-import { setKek,setLul } from "../store/actions";
+import React from 'react';
+import {useRef} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
-const Kekducer=()=>{
+import {setKek, setLul} from '../store/actions';
 
-    const dispatch=useDispatch();
+const Kekducer = () => {
+	const dispatch = useDispatch();
 
-    const {kek,lul}=useSelector(store=>store);
-    const kekRef=useRef();
-    const lulRef=useRef();
+	const {kek, lul} = useSelector(store => store);
+	const kekRef = useRef();
+	const lulRef = useRef();
 
-    const handleKekChange=()=>{
-        const newKek=kekRef.current.value;
-        dispatch(setKek(newKek))
-    }
-    const handleLulChange=()=>{
-        const newLul=lulRef.current.value;
-        dispatch(setLul(newLul))
-    }
+	const handleKekChange = () => {
+		const newKek = kekRef.current.value;
+		dispatch(setKek(newKek));
+	};
 
-    return (
-        <div>
-            <h1>
-            {kek}
-            </h1>
-            <input ref={kekRef}/>
-            <button onClick={handleKekChange}>
+	const handleLulChange = () => {
+		const newLul = lulRef.current.value;
+		dispatch(setLul(newLul));
+	};
+
+	return (
+		<div>
+			<h1>
+				{kek}
+			</h1>
+			<input ref={kekRef}/>
+			<button onClick={handleKekChange}>
                 Change kek
-            </button>
-            <h1>
-            {lul}
-            </h1>
-            <input ref={lulRef}/>
-            <button onClick={handleLulChange}>
+			</button>
+			<h1>
+				{lul}
+			</h1>
+			<input ref={lulRef}/>
+			<button onClick={handleLulChange}>
                 Change lul
-            </button>
+			</button>
 
-        </div>
-    )
-}
+		</div>
+	);
+};
 
 export default Kekducer;
