@@ -1,20 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useNavigate} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 
 import MyButton from '../UI/button/MyButton';
-import PokeStore from '../Models/PokeStore';
+// Import PokeStore from '../../models/PokeStore';
 
 import './CardItem.css';
+import {catchPokemon, releasePokemon} from '../../store/actions';
 
 const CardItem = props => {
-	const {action} = props;
+	const dispatch = useDispatch();
+	const {collection} = useSelector(state => state);
+	const {card} = props;
 
 	const navigate = useNavigate();
+
 	const handleButtonClickChangeCatched = () => {
-		PokeStore.changeCatched(props.card.id);
-		action();
+		dispatch(collection.has(card.id) ? releasePokemon(card.id) : catchPokemon(card.id));
 	};
+
+	const buttonText = collection.has(card.id) ? 'Release' : 'Catch';
 
 	return (
 		<div className="card">
@@ -23,13 +29,13 @@ const CardItem = props => {
 
 				</div>
 				<div className="imageBox">
-					<img src={props.card.imageURL} className="image" onClick={() => navigate(`/allPokemons/${props.card.id}`)}/>
+					<img src={card.picture} className="image" onClick={() => navigate(`/allPokemons/${card.id}`)}/>
 				</div>
 				<div className="card__text">
-					<strong> {props.card.id} {props.card.title} </strong>
+					<strong> {card.id} {props.card.title} </strong>
 
 					<div>
-						{props.card.name}
+						{card.name}
 					</div>
 				</div>
 
@@ -38,7 +44,7 @@ const CardItem = props => {
 				<MyButton
 					onClick={handleButtonClickChangeCatched}
 				>
-					{props.card.catched ? 'Opustit' : 'Poymat'}
+					{buttonText}
 				</MyButton>
 			</div>
 
@@ -51,10 +57,9 @@ CardItem.propTypes = {
 		id: PropTypes.number,
 		title: PropTypes.string,
 		name: PropTypes.string,
-		imageURL: PropTypes.string,
+		picture: PropTypes.string,
 		catched: PropTypes.bool,
 	}),
-	action: PropTypes.func.isRequired,
 };
 
 export default CardItem;

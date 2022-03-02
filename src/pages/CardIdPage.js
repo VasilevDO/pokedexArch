@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import CardService from '../API/CardService';
 import CardItemOnePoke from '../components/CardItem/CardItemOnePoke';
 import {useFetching} from '../components/hooks/useFetching';
-import OnePokeStandart from '../components/Models/OnePokeStandart';
+import OnePokeStandart from '../models/OnePokeStandart';
 import './CardIdPage.css';
 
 const CardIdPage = () => {

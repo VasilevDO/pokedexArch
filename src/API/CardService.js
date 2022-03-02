@@ -1,4 +1,4 @@
-import OnePokeStandart from '../components/Models/OnePokeStandart';
+import OnePokeStandart from '../models/OnePokeStandart';
 import axios from 'axios';
 
 export default class CardService {

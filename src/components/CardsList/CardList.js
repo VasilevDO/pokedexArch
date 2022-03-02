@@ -5,6 +5,8 @@ import CardItem from '../CardItem/CardItem';
 import '../CardsList/CardList.css';
 
 const CardsList = ({cards, title, action}) => {
+	// Const dispatch = useDispatch();
+
 	if (!cards.length) {
 		return (
 			<h1 className="nameOfThePage">
@@ -12,6 +14,18 @@ const CardsList = ({cards, title, action}) => {
 			</h1>
 		);
 	}
+
+	// Const getPokemonsToRender = pokemonsArr => {
+	// 	const pokemonsToRender = pokemonsArr.slice((page - 1) * limit, page * limit);
+	// 	const pokemonsToLoad = pokemonsToRender.filter(u => !u.isLoaded);
+	// 	if (pokemonsToLoad.length) {
+	// 		dispatch(getFullPokemons(pokemonsToLoad));
+	// 	}
+
+	// 	return pokemonsToRender;
+	// };
+
+	// const pokemonsToRender = getPokemonsToRender(cards);
 
 	return (
 		<div className="cardListName">
